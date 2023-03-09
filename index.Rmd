@@ -1,6 +1,6 @@
 --- 
-title: "YOUR TITLE HERE"
-author: "YOUR NAME HERE"
+title: "Coordinate Ascent Variational Inference Visualized"
+author: "Austin Tao"
 date: "`r Sys.Date()`"
 site: bookdown::bookdown_site
 ---
