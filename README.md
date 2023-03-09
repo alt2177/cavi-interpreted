@@ -1,4 +1,4 @@
-# Coordinate Ascent Variational Inference: Interpretd and Visualized
+# Coordinate Ascent Variational Inference: Interpreted and Visualized
 
 **Author:** Austin Tao
 
