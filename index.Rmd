@@ -1,5 +1,5 @@
 --- 
-title: "Coordinate Ascent Variational Inference Visualized"
+title: "Coordinate Ascent Variational Inference: Interpreted and Visualized"
 author: "Austin Tao"
 date: "`r Sys.Date()`"
 site: bookdown::bookdown_site
