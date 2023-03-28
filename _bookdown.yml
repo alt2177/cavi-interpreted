@@ -9,7 +9,7 @@ language:
 
 rmd_files: [
   'index.Rmd',
-  'model1.Rmd',
+  'vi_intro.Rmd',
   'model2.Rmd',
   'model3.Rmd',
   'reflections.Rmd'
