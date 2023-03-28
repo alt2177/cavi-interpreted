@@ -10,8 +10,8 @@ language:
 rmd_files: [
   'index.Rmd',
   'vi_intro.Rmd',
-  'model2.Rmd',
-  'model3.Rmd',
+  'vi_linear.Rmd',
+  'vi_logistic.Rmd',
   'reflections.Rmd'
   ]
 
