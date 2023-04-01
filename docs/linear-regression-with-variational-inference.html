@@ -4,18 +4,18 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>Variational Inference: Interpreted and Visualized</title>
-  <meta name="description" content="Variational Inference: Interpreted and Visualized" />
+  <title>Chapter 3 Linear Regression with Variational Inference | Variational Inference: Interpreted and Visualized</title>
+  <meta name="description" content="Chapter 3 Linear Regression with Variational Inference | Variational Inference: Interpreted and Visualized" />
   <meta name="generator" content="bookdown 0.33 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="Variational Inference: Interpreted and Visualized" />
+  <meta property="og:title" content="Chapter 3 Linear Regression with Variational Inference | Variational Inference: Interpreted and Visualized" />
   <meta property="og:type" content="book" />
   
   
   
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="Variational Inference: Interpreted and Visualized" />
+  <meta name="twitter:title" content="Chapter 3 Linear Regression with Variational Inference | Variational Inference: Interpreted and Visualized" />
   
   
   
@@ -30,8 +30,8 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black" />
   
   
-
-<link rel="next" href="introduction-to-variational-inference.html"/>
+<link rel="prev" href="introduction-to-variational-inference.html"/>
+<link rel="next" href="interpretability-of-linear-regression-optimized-with-variational-inference.html"/>
 <script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
@@ -102,40 +102,17 @@
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="header">
-<h1 class="title">Variational Inference: Interpreted and Visualized</h1>
-<p class="author"><em>Austin Tao</em></p>
-<p class="date"><em>2023-03-31</em></p>
-</div>
-<div id="project-proposal" class="section level1 hasAnchor" number="1">
-<h1><span class="header-section-number">Chapter 1</span> Project Proposal<a href="index.html#project-proposal" class="anchor-section" aria-label="Anchor link to header"></a></h1>
-<div id="backgroundmotivation" class="section level2 hasAnchor" number="1.1">
-<h2><span class="header-section-number">1.1</span> Background/Motivation<a href="index.html#backgroundmotivation" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p>Bayesian statistics is an ever-growing field in modern statistics. Inference from a Bayesian lens frames all problems about unknown quantities as a calculation involving the posterior density. However, it is often difficult to actually analytically derive these probability density functions (PDF). Instead, we often turn to approximating them using methods such as Markov Chain Monte Carlo (MCMC) sampling.</p>
-<p>However, this is not the only way to approximate such PDFs. One alternative method is called Variational Inference (VI), which is a machine learning method that performs these approximations using optimization. VI does this by positing an entire family of potential density functions, then optimizes by finding the member of that family that most closely matches the data.</p>
-<p>To actually perform VI is no trivial task, especially so because many of the calculations required are intractable. So, to accomplish the optimization task that VI poses, we need to use an iterative algorithm that performs the optimization. One such algorithm is called the Coordinate Ascent Variational Inference (CAVI) algorithm.</p>
-</div>
-<div id="modeling-goaldata" class="section level2 hasAnchor" number="1.2">
-<h2><span class="header-section-number">1.2</span> Modeling Goal/Data<a href="index.html#modeling-goaldata" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p>The goal for this project is to demonstrate the usage of VI and comment on its interpretability. The primary example used here will be applying CAVI to a linear regression task and comparing how interpretable the steps are using CAVI as opposed to standard OLS optimization. Specifically, this model will be trained and tested on the <a href="https://archive.ics.uci.edu/ml/datasets/Facebook+metrics">Facebook Metrics Dataset</a>, where the specific regression task will be to predict the number of “Lifetime Engaged Users” a particular post will receive.</p>
-</div>
-<div id="existing-literature" class="section level2 hasAnchor" number="1.3">
-<h2><span class="header-section-number">1.3</span> Existing Literature<a href="index.html#existing-literature" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p>The task of applying VI to linear regression has already been done in the past (see <a href="https://fabiandablander.com/r/Variational-Inference.html">here</a>). However, the existing literature makes no comment on the interpretability of the models and only does limited visualization. Additionally, the evaluation and training of this model was done on artificially generated data rather than real-world data. This project will address both of these points and contribute to the existing literature.</p>
-</div>
-<div id="further-extension" class="section level2 hasAnchor" number="1.4">
-<h2><span class="header-section-number">1.4</span> Further Extension<a href="index.html#further-extension" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p>After comparing the interpretability and visualizability of linear regression when optimized using VI versus OLS, I would also like to to compare VI, which is a parametric modeling method, to a nonparametric modeling method. Specifically, I am hoping to compare with a Gaussian Processes Regression (GPR) model, building the model based off of <a href="https://arxiv.org/pdf/2009.10862.pdf">this</a> paper. I hope to familiarize myself with this particular nonparametric model, building off of my understanding of the parametric VI model.</p>
+<div id="linear-regression-with-variational-inference" class="section level1 hasAnchor" number="3">
+<h1><span class="header-section-number">Chapter 3</span> Linear Regression with Variational Inference<a href="linear-regression-with-variational-inference.html#linear-regression-with-variational-inference" class="anchor-section" aria-label="Anchor link to header"></a></h1>
 
-</div>
 </div>
             </section>
 
           </div>
         </div>
       </div>
-
-<a href="introduction-to-variational-inference.html" class="navigation navigation-next navigation-unique" aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+<a href="introduction-to-variational-inference.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="interpretability-of-linear-regression-optimized-with-variational-inference.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>
@@ -166,7 +143,7 @@ gitbook.start({
 "size": 2
 },
 "edit": {
-"link": "https://github.com/alt2177/cavi-interpreted/edit/main/index.Rmd",
+"link": "https://github.com/alt2177/cavi-interpreted/edit/main/vi_linear.Rmd",
 "text": "Edit"
 },
 "history": {
@@ -174,7 +151,7 @@ gitbook.start({
 "text": null
 },
 "view": {
-"link": "https://github.com/alt2177/cavi-interpreted/blob/main/index.Rmd",
+"link": "https://github.com/alt2177/cavi-interpreted/blob/main/vi_linear.Rmd",
 "text": null
 },
 "download": null,

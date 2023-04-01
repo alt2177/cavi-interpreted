@@ -1,5 +1,5 @@
 --- 
-title: "Coordinate Ascent Variational Inference: Interpreted and Visualized"
+title: "Variational Inference: Interpreted and Visualized"
 author: "Austin Tao"
 date: "`r Sys.Date()`"
 site: bookdown::bookdown_site
@@ -15,25 +15,19 @@ However, this is not the only way to approximate such PDFs. One alternative meth
 
 To actually perform VI is no trivial task, especially so because many of the calculations required are intractable. So, to accomplish the optimization task that VI poses, we need to use an iterative algorithm that performs the optimization. One such algorithm is called the Coordinate Ascent Variational Inference (CAVI) algorithm. 
 
+
 ## Modeling Goal/Data
 
-The goal for this project is to apply CAVI towards models that we are already familiar with in an attempt to see if this can improve the interpretability of said models. Specifically, we will be implementing CAVI for linear regression and logistic regression. After successful implementation, these ML models will be trained and tested on the [Open University Learning Analytics Dataset](https://analyse.kmi.open.ac.uk/open_dataset#description), where both regression and classification will be attempted. 
-
-The specific regression task will tentatively be to predict a student's score on a particular assessment and the classification task will be to classify which class a particular student would belong to.
+The goal for this project is to demonstrate the usage of VI and comment on its interpretability. The primary example used here will be applying CAVI to a linear regression task and comparing how interpretable the steps are using CAVI as opposed to standard OLS optimization. Specifically, this model will be trained and tested on the [Facebook Metrics Dataset](https://archive.ics.uci.edu/ml/datasets/Facebook+metrics), where the specific regression task will be to predict the number of "Lifetime Engaged Users" a particular post will receive.
 
 
+## Existing Literature
 
-## Existing Literature:
+The task of applying VI to linear regression has already been done in the past (see [here](https://fabiandablander.com/r/Variational-Inference.html)). However, the existing literature makes no comment on the interpretability of the models and only does limited visualization. Additionally, the evaluation and training of this model was done on artificially generated data rather than real-world data. This project will address both of these points and contribute to the existing literature.
 
-The task of applying CAVI to linear and logistic regression has been done in the past:
+## Further Extension
 
-* [Linear Regression with CAVI](https://fabiandablander.com/r/Variational-Inference.html)
-* [Logistic Regression with CAVI (pg. 9)](https://arxiv.org/pdf/1711.06999.pdf) and code available on [github](https://github.com/tommasorigon/logisticVB)
-
-However, the existing literature makes no comment on the interpretability of the models and only does limited visualization. Additionally, the evaluation and training of these models was done on artificially generated data rather than real-world data. This project will address both of these points and contribute to the existing literature.
-
-
-
+After comparing the interpretability and visualizability of linear regression when optimized using VI versus OLS, I would also like to to compare VI, which is a parametric modeling method, to a nonparametric modeling method. Specifically, I am hoping to compare with a Gaussian Processes Regression (GPR) model, building the model based off of [this](https://arxiv.org/pdf/2009.10862.pdf) paper. I hope to familiarize myself with this particular nonparametric model, building off of my understanding of the parametric VI model.
 
 
 

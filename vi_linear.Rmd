@@ -1,1 +1,1 @@
-# Linear Regression with VI
+# Linear Regression with Variational Inference
