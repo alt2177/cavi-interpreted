@@ -23,7 +23,7 @@
 <meta name="author" content="Austin Tao" />
 
 
-<meta name="date" content="2023-03-31" />
+<meta name="date" content="2023-04-08" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -79,7 +79,12 @@
 <li class="chapter" data-level="1.3" data-path="index.html"><a href="index.html#existing-literature"><i class="fa fa-check"></i><b>1.3</b> Existing Literature</a></li>
 <li class="chapter" data-level="1.4" data-path="index.html"><a href="index.html#further-extension"><i class="fa fa-check"></i><b>1.4</b> Further Extension</a></li>
 </ul></li>
-<li class="chapter" data-level="2" data-path="introduction-to-variational-inference.html"><a href="introduction-to-variational-inference.html"><i class="fa fa-check"></i><b>2</b> Introduction to Variational Inference</a></li>
+<li class="chapter" data-level="2" data-path="introduction-to-variational-inference.html"><a href="introduction-to-variational-inference.html"><i class="fa fa-check"></i><b>2</b> Introduction to Variational Inference</a>
+<ul>
+<li class="chapter" data-level="2.1" data-path="introduction-to-variational-inference.html"><a href="introduction-to-variational-inference.html#setting-up-the-problem"><i class="fa fa-check"></i><b>2.1</b> Setting Up the Problem</a></li>
+<li class="chapter" data-level="2.2" data-path="introduction-to-variational-inference.html"><a href="introduction-to-variational-inference.html#the-mean-field-variational-family"><i class="fa fa-check"></i><b>2.2</b> The Mean-Field Variational Family</a></li>
+<li class="chapter" data-level="2.3" data-path="introduction-to-variational-inference.html"><a href="introduction-to-variational-inference.html#coordinate-ascent-variational-inference"><i class="fa fa-check"></i><b>2.3</b> Coordinate Ascent Variational Inference</a></li>
+</ul></li>
 <li class="chapter" data-level="3" data-path="linear-regression-with-variational-inference.html"><a href="linear-regression-with-variational-inference.html"><i class="fa fa-check"></i><b>3</b> Linear Regression with Variational Inference</a></li>
 <li class="chapter" data-level="4" data-path="interpretability-of-linear-regression-optimized-with-variational-inference.html"><a href="interpretability-of-linear-regression-optimized-with-variational-inference.html"><i class="fa fa-check"></i><b>4</b> Interpretability of Linear Regression Optimized with Variational Inference</a></li>
 <li class="chapter" data-level="5" data-path="reflections.html"><a href="reflections.html"><i class="fa fa-check"></i><b>5</b> Reflections</a></li>
@@ -104,7 +109,39 @@
             <section class="normal" id="section-">
 <div id="introduction-to-variational-inference" class="section level1 hasAnchor" number="2">
 <h1><span class="header-section-number">Chapter 2</span> Introduction to Variational Inference<a href="introduction-to-variational-inference.html#introduction-to-variational-inference" class="anchor-section" aria-label="Anchor link to header"></a></h1>
+<p>In the existing statistics and machine learning literature, there are many methods for approximating probability densities. This is especially important for Bayesian inference, which centers around finding good approximations for the posterior distribution. Variational Inference (VI) is one such technique that can be used.</p>
+<div id="setting-up-the-problem" class="section level2 hasAnchor" number="2.1">
+<h2><span class="header-section-number">2.1</span> Setting Up the Problem<a href="introduction-to-variational-inference.html#setting-up-the-problem" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>We want to approximate the posterior distribution given some observed variables <span class="math inline">\(\textbf{X}\)</span> and a set of latent variables <span class="math inline">\(\textbf{z}\)</span>. If we have the joint probability density function <span class="math inline">\(p(\textbf{z}, \textbf{X})\)</span>, we can write the formula for the posterior as
+<span class="math display">\[\begin{equation}
+  p(\textbf{z} \mid \textbf{X}) = \frac{p(\textbf{z}, \textbf{X})}{p(\textbf{X})}
+\end{equation}\]</span>
+Though we have this explicit formula, we are actually unable to calculate the denominator (also called the evidence). So, rather than solving explicitly, we consider an entire family of probability densities <span class="math inline">\(\mathcal{D}\)</span> and find a density <span class="math inline">\(q^*(\textbf{z}) \in \mathcal{D}\)</span> that best approximates the posterior. More formally, we wish to find
+<span class="math display">\[\begin{equation}
+  q^*(\textbf{z}) = \mathop{\mathrm{argmin}}\limits_{q(\textbf{z}) \in \mathcal{D}} \mathrm{KL}(q(\textbf{z}) || p(\textbf{z} \mid \textbf{X})))
+\end{equation}\]</span>
+where <span class="math inline">\(\mathrm{KL}\)</span> is the <a href="https://en.wikipedia.org/wiki/Kullback%E2%80%93Leibler_divergence">Kullback-Libler Divergence</a>. However, it turns out that computing the KL-divergence requires us to know the evidence, which we have already stated to be intractable. So, rather than optimizing the KL-divergence, we optimize a different objective that is equivalent up to an added constant, called the Evidence Lower Bound (ELBO). It is defined as follows:
+<span class="math display">\[\begin{equation}
+  \mathrm{ELBO}(q) := \mathbb{E}[\log p(\textbf{z}, \textbf{X})] - \mathbb{E}[\log q(\textbf{z})]
+\end{equation}\]</span>
+Relating it to the KL-divergence, we have
+<span class="math display">\[\begin{equation}
+  \mathrm{ELBO}(q) = \mathbb{E}[\log p(\textbf{X} \mid \textbf{z})] - \mathrm{KL}(q(\textbf{z}) || p(\textbf{z}))
+\end{equation}\]</span></p>
+</div>
+<div id="the-mean-field-variational-family" class="section level2 hasAnchor" number="2.2">
+<h2><span class="header-section-number">2.2</span> The Mean-Field Variational Family<a href="introduction-to-variational-inference.html#the-mean-field-variational-family" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Now, we have set up our optimization problem, but we have yet to actually specify the family of functions that our approximation is drawn from. One of the frequently used families is the Mean-Field Variational Family, which makes the assumption that the latent variables are mutually independent, each governed by their own variational density. Each member of this family of distributions has the form
+<span class="math display">\[\begin{equation}
+  q(\textbf{z}) = \prod_{j = 1}^m q_j(z_j)
+\end{equation}\]</span>
+Here, the densities <span class="math inline">\(q_j(z_j)\)</span> are the variational factors, and these are the specific factors that we will vary to maximize the ELBO.</p>
+</div>
+<div id="coordinate-ascent-variational-inference" class="section level2 hasAnchor" number="2.3">
+<h2><span class="header-section-number">2.3</span> Coordinate Ascent Variational Inference<a href="introduction-to-variational-inference.html#coordinate-ascent-variational-inference" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Between the setup of the ELBO and the mean-field family, we finally have a complete optimization problem to solve. Now, in order to solve this optimization problem, we choose to use Coordinate Ascent Variational Inference (CAVI), which iteratively optimizes each mean-field variational density and finds a local optimum for the ELBO. The pseudocode for CAVI is presented below:</p>
 
+</div>
 </div>
             </section>
 
@@ -166,6 +203,20 @@ gitbook.start({
 });
 </script>
 
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.9/latest.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
 </body>
 
 </html>

@@ -1,2 +1,50 @@
+---
+header-includes:
+    - \newcommand{\argmin}{\mathop{\mathrm{argmin}}\limits}
+---
 # Introduction to Variational Inference
+
+In the existing statistics and machine learning literature, there are many methods for approximating probability densities. This is especially important for Bayesian inference, which centers around finding good approximations for the posterior distribution. Variational Inference (VI) is one such technique that can be used.
+
+## Setting Up the Problem
+
+We want to approximate the posterior distribution given some observed variables $\textbf{X}$ and a set of latent variables $\textbf{z}$. If we have the joint probability density function $p(\textbf{z}, \textbf{X})$, we can write the formula for the posterior as 
+\begin{equation}
+  p(\textbf{z} \mid \textbf{X}) = \frac{p(\textbf{z}, \textbf{X})}{p(\textbf{X})}
+\end{equation}
+Though we have this explicit formula, we are actually unable to calculate the denominator (also called the evidence). So, rather than solving explicitly, we consider an entire family of probability densities $\mathcal{D}$ and find a density $q^*(\textbf{z}) \in \mathcal{D}$ that best approximates the posterior. More formally, we wish to find
+\begin{equation}
+  q^*(\textbf{z}) = \argmin_{q(\textbf{z}) \in \mathcal{D}} \mathrm{KL}(q(\textbf{z}) || p(\textbf{z} \mid \textbf{X})))
+\end{equation}
+where $\mathrm{KL}$ is the [Kullback-Libler Divergence](https://en.wikipedia.org/wiki/Kullback%E2%80%93Leibler_divergence). However, it turns out that computing the KL-divergence requires us to know the evidence, which we have already stated to be intractable. So, rather than optimizing the KL-divergence, we optimize a different objective that is equivalent up to an added constant, called the Evidence Lower Bound (ELBO). It is defined as follows:
+\begin{equation}
+  \mathrm{ELBO}(q) := \mathbb{E}[\log p(\textbf{z}, \textbf{X})] - \mathbb{E}[\log q(\textbf{z})]
+\end{equation}
+Relating it to the KL-divergence, we have
+\begin{equation}
+  \mathrm{ELBO}(q) = \mathbb{E}[\log p(\textbf{X} \mid \textbf{z})] - \mathrm{KL}(q(\textbf{z}) || p(\textbf{z}))
+\end{equation}
+
+## The Mean-Field Variational Family
+
+Now, we have set up our optimization problem, but we have yet to actually specify the family of functions that our approximation is drawn from. One of the frequently used families is the Mean-Field Variational Family, which makes the assumption that the latent variables are mutually independent, each governed by their own variational density. Each member of this family of distributions has the form
+\begin{equation}
+  q(\textbf{z}) = \prod_{j = 1}^m q_j(z_j)
+\end{equation}
+Here, the densities $q_j(z_j)$ are the variational factors, and these are the specific factors that we will vary to maximize the ELBO.
+
+## Coordinate Ascent Variational Inference
+
+Between the setup of the ELBO and the mean-field family, we finally have a complete optimization problem to solve. Now, in order to solve this optimization problem, we choose to use Coordinate Ascent Variational Inference (CAVI), which iteratively optimizes each mean-field variational density and finds a local optimum for the ELBO. The pseudocode for CAVI is presented below:
+
+```{r}
+# comment here
+```
+
+
+
+
+
+
+
 
