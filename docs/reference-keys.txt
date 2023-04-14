@@ -4,9 +4,10 @@ modeling-goaldata
 existing-literature
 further-extension
 introduction-to-variational-inference
-linear-regression-with-variational-inference
-interpretability-of-linear-regression-optimized-with-variational-inference
-reflections
 setting-up-the-problem
 the-mean-field-variational-family
 coordinate-ascent-variational-inference
+linear-regression-with-variational-inference
+linear-regression-setup
+interpretability-of-linear-regression-optimized-with-variational-inference
+reflections

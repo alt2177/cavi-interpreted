@@ -1,1 +1,13 @@
 # Linear Regression with Variational Inference
+
+## Linear Regression Setup
+
+A standard ordinary least squares linear regression model has the form
+\begin{equation}
+  y = \beta_0 + \sum_{i = 1}^p \beta_ix_i + \varepsilon
+\end{equation}
+where we assume there are $p$ number of explanatory variables. For us, rather than trying to explicitly find the coefficients of the explanatory variables, we want to use CAVI to do so. So, we need to assume families of distributions that our latent variable, $y$, and our model variables $\beta$ are drawn from. Additionally, we add a variance term $\sigma^2$. The setup is as follows:
+\begin{align}
+  y &\sim \mathcal{N}(\beta x, \sigma^2) & \beta &\sim \mathcal{N}(0, \sigma^2\tau^2)
+\end{align}
+
